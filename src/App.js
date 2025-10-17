@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import UserPage from "./pages/UserPage";
+import AdminPage from "./pages/AdminPage";
+import KitchenPage from "./pages/KitchenPage";
+import Login from "./pages/Login";
+import Error from "./pages/Error";
+import SharedLayout from "./routes/SharedLayout";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<HomePage />} />
+
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <AdminPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/kitchen"
+              element={
+                <ProtectedRoute>
+                  <KitchenPage />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+
+          <Route path="/user" element={<UserPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.home-page {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    color: black;
+}
+
+.home-header {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.5rem;
+    margin-top:2.5rem;
+}
+
+.home-page .text {
+    width: 50%;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 1rem;
+}
+
+.text button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+/* 🔹 Use Grid instead of Flex */
+.home-page .popular {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 equal columns */
+    gap: 1rem;
+    width: 80%;
+    justify-items: center;
+    /* centers child elements horizontally */
+}
+
+.home-page .popular .p1,
+.home-page .popular .p2,
+.home-page .popular .p3,
+.home-page .popular .p4 {
+    background-color: rgb(171, 26, 26);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.home-page .popular .p1 p,
+.home-page .popular .p2 p,
+.home-page .popular .p3 p,
+.home-page .popular .p4 p {
+    font-size: 1.5rem;
+}
+
+.home-page .popular .p1 .img,
+.home-page .popular .p2 .img,
+.home-page .popular .p3 .img,
+.home-page .popular .p4 .img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    position: absolute;
+    background-color: rgb(76, 76, 189);
+    top: -40px;
+}
+
+.home-page .popular .p1 .img:hover,
+.home-page .popular .p2 .img:hover,
+.home-page .popular .p3 .img:hover,
+.home-page .popular .p4 .img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+@media screen and (max-width:1100px) {
+    .home-page .text {
+        width: 80%;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        margin-bottom: 10px;
+        margin-top: 2rem;
+    }
+}
+
+/* 🔹 Mobile Responsive (Grid version) */
+@media screen and (max-width: 768px) {
+    .home-page {
+        width: 100%;
+    }
+
+    .home-header {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+    }
+
+    .home-page .text {
+        width: 90%;
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+
+    .text button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .home-page .popular {
+        grid-template-columns: repeat(2, 1fr);
+        /* ✅ One column on mobile */
+        justify-items: center;
+        /* center all items */
+        width: 100%;
+    }
+
+    .home-page .popular .p1,
+    .home-page .popular .p2,
+    .home-page .popular .p3,
+    .home-page .popular .p4 {
+        width: 200px;
+        /* ✅ your requested width */
+        height: auto;
+        /* let content decide height */
+        min-height: 220px;
+        padding: 1rem;
+        margin-top: 1.2rem;
+    }
+
+    .home-page .popular .p1 .img,
+    .home-page .popular .p2 .img,
+    .home-page .popular .p3 .img,
+    .home-page .popular .p4 .img {
+        width: 80px;
+        height: 80px;
+        top: -30px;
+    }
+
+}
+
+@media screen and (max-width:420px) {
+    .home-page .text {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        margin-bottom: 10px;
+        margin-top: 1rem;
+    }
+
+    .text button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .home-page .popular {
+        grid-template-columns: 1fr;
+        /* ✅ One column on mobile */
+        justify-items: center;
+        /* center all items */
+        width: 100%;
+    }
+
+    .home-page .popular .p1,
+    .home-page .popular .p2,
+    .home-page .popular .p3,
+    .home-page .popular .p4 {
+        width: 60%;
+        /* ✅ your requested width */
+        height: auto;
+        /* let content decide height */
+        min-height: 250px;
+        padding: 1rem;
+        margin-top: 1.2rem;
+    }
+
+    .home-page .popular .p1 .img,
+    .home-page .popular .p2 .img,
+    .home-page .popular .p3 .img,
+    .home-page .popular .p4 .img {
+        width: 80px;
+        height: 80px;
+        top: -30px;
+    }
+
+}

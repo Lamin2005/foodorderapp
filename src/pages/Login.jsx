@@ -1,52 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Login.css";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
-function Login() {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+export default function LoginPopup({ onClose }) {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (username === "admin" && password === "admin") {
-      localStorage.setItem("isAdmin", "true");
-      navigate("/admin");
-    } else if (username === "kitchen" && password === "kitchen") {
-      localStorage.setItem("isKitchen", "true");
-      navigate("/kitchen");
-    } else {
-      alert("Invalid credentials");
-    }
-    navigate("/");
+    alert(`Email: ${email}\nPassword: ${password}`);
   };
 
   return (
-    <div className="login-page">
-      <div className="container">
-        <form className="login-form" onSubmit={handleSubmit}>
-          <h2>Login</h2>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">Sign In</button>
-          <p className="signup">Don't have an account?</p>
+    <div className="login-overlay">
+      <div className="login-popup">
+        <button className="close-btn" onClick={onClose}>×</button>
+        <h2>Sign In</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="login-btn">Login</button>
         </form>
+        <p className="footer-text">
+          Don't have an account? <a href="#">Sign up</a>
+        </p>
       </div>
     </div>
   );
 }
-
-export default Login;

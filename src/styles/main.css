@@ -13,10 +13,3 @@ html,
   justify-content: center;
   align-items: center;
 }
-
-
-.header {
-  width: 100%;
-  position: sticky;
-  
-}

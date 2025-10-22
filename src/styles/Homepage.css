@@ -23,14 +23,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-.header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  
-}
-
 
 /* 🏠 Hero Section */
 .home-header {
@@ -94,6 +86,7 @@
   gap: 25px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .popular .p1,

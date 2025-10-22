@@ -14,9 +14,9 @@ function HomePage() {
   return (
     <main className="main">
       <div className="home-page">
-        
+        <div className="header">
           <Navbar />
-       
+        </div>
         <div className="home-header">
           <p>Welcome to FoodApp</p>
           <h1>Wake Up Early,</h1>

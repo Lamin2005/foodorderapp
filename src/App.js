@@ -2,40 +2,31 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import UserPage from "./pages/UserPage";
-import AdminPage from "./pages/AdminPage";
 import KitchenPage from "./pages/KitchenPage";
-import Login from "./pages/Login";
 import Error from "./pages/Error";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
+import Dashboard from "./components/Admin/Dashboard";
+import UserManagement from "./components/Admin/UserManagement";
+import AdminLayout from "./layout/Adminlayout";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route index element={<HomePage />} />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <AdminPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/kitchen"
-            element={
-              <ProtectedRoute>
-                <KitchenPage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<HomePage />} />
+
+          <Route path="/admin" element={<AdminLayout />}>         
+            <Route path="/admin/dashboard" element={<Dashboard/>} />
+            <Route path="/admin/users" element={<UserManagement />}/>                   
+          </Route>
+
+          <Route path="/kitchen" element={<KitchenPage />} />
 
           <Route path="/menu" element={<UserPage />} />
-          <Route path="/menu/:id" element={<DetailPage/>}/>
-          <Route path="/login" element={<Login />} />
+          <Route path="/menu/:id" element={<DetailPage />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

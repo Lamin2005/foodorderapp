@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Homepage.css";
 import Navbar from "../components/common/Navbar";
 import Loading from "../components/common/Loading";
-import LoginPopup from "./Login";
+import LoginPopup from "../components/common/Login";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 

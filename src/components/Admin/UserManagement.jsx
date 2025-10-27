@@ -4,59 +4,70 @@ import { FaEdit, FaTrash, FaPlus, FaTimes } from "react-icons/fa";
 import "../../styles/UserManagement.css";
 
 export default function AdminUsers() {
-  const [users, setUsers] = useState([]);
-  const [formData, setFormData] = useState({ id: null, name: "", email: "", role: "User" });
-  const [editing, setEditing] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [editing, setEditing] = useState(false);
+  const [formData, setFormData] = useState({
+    id: null,
+    name: "",
+    email: "",
+    role: "User",
+  });
 
-  // 🔹 Load from localStorage
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
     setUsers(storedUsers);
   }, []);
 
-  // 🔹 Save to localStorage
+  useEffect(() => {
+    if (!showPopup) {
+      setEditing(false);
+      setFormData({ id: null, name: "", email: "", role: "User" });
+    }
+  }, [showPopup]);
+
   const saveToLocalStorage = (updatedUsers) => {
     setUsers(updatedUsers);
     localStorage.setItem("users", JSON.stringify(updatedUsers));
   };
 
-  // 🔹 Add or Update
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email) return alert("Please fill all fields!");
-
+    if (!formData.name || !formData.email) {
+      return alert("Please fill all fields!");
+    }
     if (editing) {
-      const updated = users.map((u) =>
+      const updatedUser = users.map((u) =>
         u.id === formData.id ? formData : u
       );
-      saveToLocalStorage(updated);
+      saveToLocalStorage(updatedUser);
       setEditing(false);
+      window.alert("Successfullly User Updated.");
     } else {
       const newUser = {
         ...formData,
         id: users.length ? users[users.length - 1].id + 1 : 1,
       };
       saveToLocalStorage([...users, newUser]);
+      window.alert("Successfullly New User Add.");
     }
 
     setFormData({ id: null, name: "", email: "", role: "User" });
     setShowPopup(false);
   };
 
-  // 🔹 Delete
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure to delete this user?")) {
-      const updated = users.filter((u) => u.id !== id);
-      saveToLocalStorage(updated);
-    }
-  };
-
-  // 🔹 Edit
   const handleEdit = (user) => {
     setFormData(user);
     setEditing(true);
     setShowPopup(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure to delete this user?")) {
+      const updated = users.filter((u) => u.id !== id);
+      saveToLocalStorage(updated);
+      alert("Delete User Successfully.");
+    }
   };
 
   return (
@@ -72,7 +83,11 @@ export default function AdminUsers() {
         <table>
           <thead>
             <tr>
-              <th>#</th><th>Name</th><th>Email</th><th>Role</th><th>Actions</th>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -87,14 +102,19 @@ export default function AdminUsers() {
                     <button className="edit-btn" onClick={() => handleEdit(u)}>
                       <FaEdit />
                     </button>
-                    <button className="delete-btn" onClick={() => handleDelete(u.id)}>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(u.id)}
+                    >
                       <FaTrash />
                     </button>
                   </td>
                 </tr>
               ))
             ) : (
-              <tr><td colSpan="5">No users found</td></tr>
+              <tr>
+                <td colSpan="5">No users found</td>
+              </tr>
             )}
           </tbody>
         </table>
@@ -116,17 +136,25 @@ export default function AdminUsers() {
                 type="text"
                 placeholder="Enter name"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
               />
+
               <input
                 type="email"
                 placeholder="Enter email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
               />
+
               <select
                 value={formData.role}
-                onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, role: e.target.value })
+                }
               >
                 <option value="Admin">Admin</option>
                 <option value="User">User</option>

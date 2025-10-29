@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaHome,
   FaUser,
@@ -8,10 +8,20 @@ import {
   FaBars,
 } from "react-icons/fa";
 import "../styles/Adminpage.css";
-import { Link, Links } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Profileimg from "../assets/images/profie-img.png";
 
 export default function AdminPage({ title, children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
+  const [founduser,setfounduser] = useState("");
+
+  useEffect(() => {  
+    const storedUsers = JSON.parse(localStorage.getItem("users"));
+    setfounduser(storedUsers.find((u) => u.id == user.id));
+    console.log(founduser);   
+  }, [user]);
+
 
   return (
     <div className="admin-container">
@@ -73,8 +83,8 @@ export default function AdminPage({ title, children }) {
             <FaBars />
           </button>
           <div className="user-info">
-            <img src="https://i.pravatar.cc/40" alt="admin" />
-            <span>Admin</span>
+            <img src={founduser !== "" ? founduser.profile : Profileimg} alt="admin" />
+            <span>{founduser !== "" ? founduser.name : "Admin"}</span>
           </div>
         </header>
 

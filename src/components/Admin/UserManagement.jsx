@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminPage from "../../pages/AdminPage";
 import { FaEdit, FaTrash, FaPlus, FaTimes } from "react-icons/fa";
 import "../../styles/UserManagement.css";
+import Profileimg from "../../assets/images/profie-img.png";
 
 export default function AdminUsers() {
   const [showPopup, setShowPopup] = useState(false);
@@ -11,7 +12,9 @@ export default function AdminUsers() {
     id: null,
     name: "",
     email: "",
+    password: "",
     role: "User",
+    profile: "",
   });
 
   useEffect(() => {
@@ -36,23 +39,35 @@ export default function AdminUsers() {
     if (!formData.name || !formData.email) {
       return alert("Please fill all fields!");
     }
+
+    const finalData = {
+      ...formData,
+      profile: formData.profile || Profileimg,
+    };
+
     if (editing) {
       const updatedUser = users.map((u) =>
-        u.id === formData.id ? formData : u
+        u.id === formData.id ? finalData : u
       );
       saveToLocalStorage(updatedUser);
-      setEditing(false);
-      window.alert("Successfullly User Updated.");
+      window.alert("Successfully User Updated.");
     } else {
       const newUser = {
-        ...formData,
+        ...finalData,
         id: users.length ? users[users.length - 1].id + 1 : 1,
       };
       saveToLocalStorage([...users, newUser]);
-      window.alert("Successfullly New User Add.");
+      window.alert("Successfully New User Added.");
     }
 
-    setFormData({ id: null, name: "", email: "", role: "User" });
+    setFormData({
+      id: null,
+      name: "",
+      email: "",
+      role: "User",
+      password: "",
+      profile: "",
+    });
     setShowPopup(false);
   };
 
@@ -67,6 +82,17 @@ export default function AdminUsers() {
       const updated = users.filter((u) => u.id !== id);
       saveToLocalStorage(updated);
       alert("Delete User Successfully.");
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({ ...formData, profile: reader.result }); // base64 image
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -95,7 +121,28 @@ export default function AdminUsers() {
               users.map((u, index) => (
                 <tr key={u.id}>
                   <td>{index + 1}</td>
-                  <td>{u.name}</td>
+                  <td>
+                    <span
+                      style={{
+                        display: "flex",
+                        justifyContent: "start",
+                        alignItems: "center",
+                      }}
+                    >
+                      <img
+                        src={u.profile}
+                        alt="profile"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          objectFit: "cover",
+                          marginRight: "10px",
+                        }}
+                      />
+                      {u.name}
+                    </span>
+                  </td>
                   <td>{u.email}</td>
                   <td>{u.role}</td>
                   <td>
@@ -133,6 +180,12 @@ export default function AdminUsers() {
 
             <form className="popup-form" onSubmit={handleSubmit}>
               <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageChange(e)}
+              />
+
+              <input
                 type="text"
                 placeholder="Enter name"
                 value={formData.name}
@@ -147,6 +200,15 @@ export default function AdminUsers() {
                 value={formData.email}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
+                }
+              />
+
+              <input
+                type="password"
+                placeholder="Enter password"
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
                 }
               />
 

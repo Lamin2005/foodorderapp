@@ -4,29 +4,44 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import UserPage from "./pages/UserPage";
 import KitchenPage from "./pages/KitchenPage";
 import Error from "./pages/Error";
-import ProtectedRoute from "./routes/ProtectedRoute";
+import AdminProtectedRoute from "./routes/AdminProtectedRoute";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import Dashboard from "./components/Admin/Dashboard";
 import UserManagement from "./components/Admin/UserManagement";
-import AdminLayout from "./layout/Adminlayout";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
+          {/*Publice Route */}
           <Route path="/" element={<HomePage />} />
-
-          <Route path="/admin" element={<AdminLayout />}>         
-            <Route path="/admin/dashboard" element={<Dashboard/>} />
-            <Route path="/admin/users" element={<UserManagement />}/>                   
-          </Route>
-
-          <Route path="/kitchen" element={<KitchenPage />} />
-
           <Route path="/menu" element={<UserPage />} />
           <Route path="/menu/:id" element={<DetailPage />} />
+
+          {/*Admin Route */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <AdminProtectedRoute requiredRole="Admin">
+                <Dashboard />
+              </AdminProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <AdminProtectedRoute requiredRole="Admin">
+                <UserManagement />
+              </AdminProtectedRoute>
+            }
+          />
+
+          {/*Kitchen Route */}
+          <Route path="/kitchen" element={<KitchenPage />} />
+
+          {/*Page Not Found */}
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

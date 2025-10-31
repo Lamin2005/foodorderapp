@@ -1,31 +1,30 @@
 import React, { useState } from "react";
 import "../../styles/Login.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 export default function LoginPopup({ onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { login, users } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Handle login logic here
-    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-
-    const user = storedUsers.find((user) => user.email === email && user.password === password);
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
 
     if (user) {
-      sessionStorage.setItem("loggedInUser", JSON.stringify(user));
+      login(user);
       alert(`Welcome back, ${user.name}!`);
 
-      if(user.role === "Admin")
-      {
-        navigate('/admin/dashboard');
-      }else{
-        navigate('/kitchen');
+      if (user.role === "Admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/kitchen");
       }
-
     } else {
       alert("Invalid email or password");
     }
@@ -34,7 +33,9 @@ export default function LoginPopup({ onClose }) {
   return (
     <div className="login-overlay">
       <div className="login-popup">
-        <button className="close-btn" onClick={onClose}>×</button>
+        <button className="close-btn" onClick={onClose}>
+          ×
+        </button>
         <h2>Sign In</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
@@ -57,7 +58,9 @@ export default function LoginPopup({ onClose }) {
               required
             />
           </div>
-          <button type="submit" className="login-btn">Login</button>
+          <button type="submit" className="login-btn">
+            Login
+          </button>
         </form>
         <p className="footer-text">
           Don't have an account? <a href="#">Sign up</a>

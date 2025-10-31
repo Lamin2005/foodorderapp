@@ -14,14 +14,13 @@ import Profileimg from "../assets/images/profie-img.png";
 export default function AdminPage({ title, children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
-  const [founduser,setfounduser] = useState("");
+  const [founduser, setfounduser] = useState("");
 
-  useEffect(() => {  
+  useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem("users"));
     setfounduser(storedUsers.find((u) => u.id == user.id));
-    console.log(founduser);   
+    console.log(founduser);
   }, [user]);
-
 
   return (
     <div className="admin-container">
@@ -83,7 +82,10 @@ export default function AdminPage({ title, children }) {
             <FaBars />
           </button>
           <div className="user-info">
-            <img src={founduser !== "" ? founduser.profile : Profileimg} alt="admin" />
+            <img
+              src={founduser !== "" ? founduser.profile : Profileimg}
+              alt="admin"
+            />
             <span>{founduser !== "" ? founduser.name : "Admin"}</span>
           </div>
         </header>

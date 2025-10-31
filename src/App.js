@@ -9,41 +9,44 @@ import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import Dashboard from "./components/Admin/Dashboard";
 import UserManagement from "./components/Admin/UserManagement";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
-          {/*Publice Route */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/menu" element={<UserPage />} />
-          <Route path="/menu/:id" element={<DetailPage />} />
+        <AuthProvider>
+          <Routes>
+            {/*Publice Route */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/menu" element={<UserPage />} />
+            <Route path="/menu/:id" element={<DetailPage />} />
 
-          {/*Admin Route */}
-          <Route
-            path="/admin/dashboard"
-            element={
-              <AdminProtectedRoute requiredRole="Admin">
-                <Dashboard />
-              </AdminProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/users"
-            element={
-              <AdminProtectedRoute requiredRole="Admin">
-                <UserManagement />
-              </AdminProtectedRoute>
-            }
-          />
+            {/*Admin Route */}
+            <Route
+              path="/admin/dashboard"
+              element={
+                <AdminProtectedRoute requiredRole="Admin">
+                  <Dashboard />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/users"
+              element={
+                <AdminProtectedRoute requiredRole="Admin">
+                  <UserManagement />
+                </AdminProtectedRoute>
+              }
+            />
 
-          {/*Kitchen Route */}
-          <Route path="/kitchen" element={<KitchenPage />} />
+            {/*Kitchen Route */}
+            <Route path="/kitchen" element={<KitchenPage />} />
 
-          {/*Page Not Found */}
-          <Route path="*" element={<Error />} />
-        </Routes>
+            {/*Page Not Found */}
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </AuthProvider>
       </Router>
     </div>
   );

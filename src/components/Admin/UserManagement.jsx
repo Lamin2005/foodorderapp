@@ -46,10 +46,12 @@ export default function AdminUsers() {
     };
 
     if (editing) {
+      sessionStorage.setItem("loggedInUser",JSON.stringify(finalData));
       const updatedUser = users.map((u) =>
         u.id === formData.id ? finalData : u
       );
       saveToLocalStorage(updatedUser);
+      
       window.alert("Successfully User Updated.");
     } else {
       const newUser = {

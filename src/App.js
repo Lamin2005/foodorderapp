@@ -17,16 +17,16 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
-            {/*Publice Route */}
+            {/* Public Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/menu" element={<UserPage />} />
             <Route path="/menu/:id" element={<DetailPage />} />
 
-            {/*Admin Route */}
+            {/* Admin Routes */}
             <Route
               path="/admin/dashboard"
               element={
-                <AdminProtectedRoute requiredRole="Admin">
+                <AdminProtectedRoute>
                   <Dashboard />
                 </AdminProtectedRoute>
               }
@@ -34,16 +34,16 @@ function App() {
             <Route
               path="/admin/users"
               element={
-                <AdminProtectedRoute requiredRole="Admin">
+                <AdminProtectedRoute>
                   <UserManagement />
                 </AdminProtectedRoute>
               }
             />
 
-            {/*Kitchen Route */}
+            {/* Kitchen Route */}
             <Route path="/kitchen" element={<KitchenPage />} />
 
-            {/*Page Not Found */}
+            {/* Page Not Found */}
             <Route path="*" element={<Error />} />
           </Routes>
         </AuthProvider>

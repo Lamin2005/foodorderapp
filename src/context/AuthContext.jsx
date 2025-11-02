@@ -1,4 +1,3 @@
-// src/context/AuthContext.js (သဘောတရားအရ)
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -46,7 +45,9 @@ export const AuthProvider = ({children}) => {
 
   const value = {
     users,
+    setUsers,
     loggedInUser,
+    setloggedInUser,
     login,
     logout,
     isLoading,

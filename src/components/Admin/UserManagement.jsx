@@ -3,10 +3,11 @@ import AdminPage from "../../pages/AdminPage";
 import { FaEdit, FaTrash, FaPlus, FaTimes } from "react-icons/fa";
 import "../../styles/UserManagement.css";
 import Profileimg from "../../assets/images/profie-img.png";
+import { useAuth } from "../../context/AuthContext";
 
 export default function AdminUsers() {
   const [showPopup, setShowPopup] = useState(false);
-  const [users, setUsers] = useState([]);
+  const { users, setUsers, setloggedInUser, loggedInUser } = useAuth();
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
     id: null,
@@ -16,11 +17,6 @@ export default function AdminUsers() {
     role: "User",
     profile: "",
   });
-
-  useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-    setUsers(storedUsers);
-  }, []);
 
   useEffect(() => {
     if (!showPopup) {
@@ -46,12 +42,16 @@ export default function AdminUsers() {
     };
 
     if (editing) {
-      sessionStorage.setItem("loggedInUser",JSON.stringify(finalData));
+      if (finalData.id === loggedInUser.id) {
+        setloggedInUser(finalData);
+        sessionStorage.setItem("loggedInUser", JSON.stringify(finalData));
+      }
+
       const updatedUser = users.map((u) =>
         u.id === formData.id ? finalData : u
       );
       saveToLocalStorage(updatedUser);
-      
+
       window.alert("Successfully User Updated.");
     } else {
       const newUser = {
@@ -99,7 +99,7 @@ export default function AdminUsers() {
   };
 
   return (
-    <AdminPage title="User Management">
+    <AdminPage title="Users">
       <section className="table-section">
         <div className="table-header">
           <h2>User Management</h2>
@@ -233,3 +233,7 @@ export default function AdminUsers() {
     </AdminPage>
   );
 }
+
+// This component represents the user management interface in the admin panel.
+// It allows adding, editing, and deleting users,
+// and stores user data in local storage for persistence.

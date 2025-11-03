@@ -1,0 +1,80 @@
+.orders-container {
+  background: #fff;
+  color: #333;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+.orders-container h2 {
+  margin-bottom: 20px;
+  color: #003366;
+  font-weight: 600;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.orders-table th {
+  background-color: #003366;
+  color: white;
+}
+
+.order-items {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.status.completed {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.status.cancelled {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.delete-btn {
+  background: #dc3545;
+  border: none;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #b02a37;
+}
+
+.no-orders {
+  text-align: center;
+  margin-top: 40px;
+  color: #777;
+}

@@ -1,5 +1,12 @@
 import React from "react";
-import { FaHome, FaUser, FaChartBar, FaSignOutAlt, FaBars } from "react-icons/fa";
+import {
+  FaHome,
+  FaUser,
+  FaChartBar,
+  FaSignOutAlt,
+  FaBars,
+  FaShoppingCart
+} from "react-icons/fa";
 import "../styles/Adminpage.css";
 import { Link } from "react-router-dom";
 import Profileimg from "../assets/images/profie-img.png";
@@ -11,24 +18,41 @@ export default function AdminPage({ title, children }) {
 
   return (
     <div className="admin-container">
-      {sidebarOpen && <div className="overlay" onClick={() => setSidebarOpen(false)}></div>}
+      {sidebarOpen && (
+        <div className="overlay" onClick={() => setSidebarOpen(false)}></div>
+      )}
 
       <aside className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
         <div className="sidebar-header">
           {sidebarOpen && <h2>MyAdmin</h2>}
-          <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
+          <button
+            className="menu-btn"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          >
             <FaBars />
           </button>
         </div>
 
         <nav className="admin-nav-links">
-          <Link to="/admin/dashboard" className={title === "Dashboard" ? "active" : ""}>
+          <Link
+            to="/admin/dashboard"
+            className={title === "Dashboard" ? "active" : ""}
+          >
             <FaHome /> <span>Dashboard</span>
           </Link>
           <Link to="/admin/users" className={title === "Users" ? "active" : ""}>
             <FaUser /> <span>Users</span>
           </Link>
-          <a href="/admin/reports" className={title === "Reports" ? "active" : ""}>
+          <Link
+            to="/admin/orders"
+            className={title === "Order" ? "active" : ""}
+          >
+            <FaShoppingCart /> <span>Orders</span>
+          </Link>
+          <a
+            href="/admin/reports"
+            className={title === "Reports" ? "active" : ""}
+          >
             <FaChartBar /> <span>Reports</span>
           </a>
           <a href="/logout">
@@ -40,7 +64,10 @@ export default function AdminPage({ title, children }) {
       <main className="main-content">
         <header className="topbar">
           <h1>{title}</h1>
-          <button className="mobile-menu-btn" onClick={() => setSidebarOpen(true)}>
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setSidebarOpen(true)}
+          >
             <FaBars />
           </button>
           <div className="user-info">

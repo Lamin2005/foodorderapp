@@ -9,7 +9,9 @@ import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import Dashboard from "./components/Admin/Dashboard";
 import UserManagement from "./components/Admin/UserManagement";
+import MenuManagement from "./components/Admin/MenuManagement";
 import { AuthProvider } from "./context/AuthContext";
+import AddOrder from "./components/User/AddOrder";
 
 function App() {
   return (
@@ -40,7 +42,13 @@ function App() {
               }
             />
 
+            <Route path="/admin/menu" element={<AdminProtectedRoute>
+              <MenuManagement/>
+            </AdminProtectedRoute>} />
+
+
             {/* Kitchen Route */}
+            <Route path="/userorder" element={<AddOrder/>} />
             <Route path="/kitchen" element={<KitchenPage />} />
 
             {/* Page Not Found */}

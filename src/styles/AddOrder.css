@@ -1,0 +1,61 @@
+.add-order-container {
+  background: #fff;
+  color: #333;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: auto;
+}
+
+.add-order-container h2 {
+  text-align: center;
+  color: #003366;
+  margin-bottom: 25px;
+}
+
+.add-order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #003366;
+}
+
+.add-btn {
+  background: #003366;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.add-btn:hover {
+  background: #0055aa;
+}

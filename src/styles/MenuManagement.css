@@ -1,0 +1,382 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+.table-section {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.table-section h2 {
+    color: #00bfff;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.add-popup-btn {
+    background-color: #00bfff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+.add-popup-btn:hover {
+    background-color: #0088cc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    color: #00bfff;
+    font-weight: 500;
+}
+
+td {
+    color: #fff;
+}
+
+
+.menu-container {
+    padding: 20px;
+    color: #fff;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-btn {
+    background: #00aaff;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.menu-table th,
+.menu-table td {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    text-align: center;
+}
+
+.menu-table th {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.detail-btn,
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.detail-btn:hover {
+    color: #00bcd4;
+}
+
+.edit-btn:hover {
+    color: #ffc107;
+}
+
+.delete-btn:hover {
+    color: #f44336;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    color: white;
+}
+
+.popup-content {
+    background: #002b5b;
+    padding: 25px;
+    border-radius: 10px;
+    width: 400px;
+    color: white;
+    position: relative;
+}
+
+.popup-content h3 {
+    margin-bottom: 15px;
+}
+
+.popup-content input,
+.popup-content textarea {
+    background: rgba(158, 147, 147, 0.15);
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+}
+
+.save-btn {
+    width: 100%;
+    padding: 8px;
+    background: #00aaff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+
+.menu-header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.category-list {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.category-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category-list li {
+    margin: 5px 0;
+}
+
+
+
+
+/* 🌈 Select Input Styling */
+.popup-form select,
+.popup-content select {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  width: 100%;
+  background: rgba(37, 32, 32, 0.15);
+  color: #fff;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  transition: 0.3s ease;
+  cursor: pointer;
+  appearance: none; /* hide default arrow */
+  background-image: linear-gradient(45deg, transparent 50%, #00bfff 50%),
+    linear-gradient(135deg, #00bfff 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(1em + 2px),
+    calc(100% - 13px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+/* 🌟 Hover & Focus Effect */
+.popup-form select:hover,
+.popup-content select:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.popup-form select:focus,
+.popup-content select:focus {
+  background: rgba(0, 191, 255, 0.25);
+  box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.5);
+}
+
+/* Disabled or Empty Placeholder Option */
+.popup-form select option[value=""],
+.popup-content select option[value=""] {
+  color: #aaa;
+}
+
+.popup-form select option:checked {
+  background-color: #00bfff;
+  color: #fff;
+}
+
+
+
+
+
+
+
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 8px;
+    transition: 0.3s;
+}
+
+.edit-btn {
+    color: #00bfff;
+}
+
+.delete-btn {
+    color: #e74c3c;
+}
+
+.edit-btn:hover {
+    color: #0099ff;
+}
+
+.delete-btn:hover {
+    color: #ff4d4d;
+}
+
+/* 🌟 Popup Overlay */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* 📦 Popup Box */
+.popup-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 25px;
+    width: 400px;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    animation: popupSlide 0.3s ease;
+}
+
+@keyframes popupSlide {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.popup-header h3 {
+    color: #00bfff;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup-form input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.popup-form input::placeholder {
+    color: #ddd;
+}
+
+.popup-submit-btn {
+    background: #00bfff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.popup-submit-btn:hover {
+    background: #0088cc;
+}
